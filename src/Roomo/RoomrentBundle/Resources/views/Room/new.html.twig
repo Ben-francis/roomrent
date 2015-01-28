@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block body -%}
+    <p>
+        <br />
+    </p>
+<div class="panel panel-default">
+  <div class="panel-heading">Add your room</div>
+  <div class="panel-body">
+   
+    
+     {{ form_start(form) }}
+     {{ form_errors(form) }} 
+    
+    <div class="input-group">
+        {{ form_row(form.title) }} 
+    </div>
+    <div class="input-group">
+        {{ form_row(form.glat) }} 
+    </div>
+    <div class="input-group">
+        {{ form_row(form.glong) }} 
+    </div>
+    <div class="input-group">
+       
+        {{ form_row(form.price) }} 
+            </div>
+        
+        {{form_rest(form) }}    
+        <hr />
+        
+    {{ form_end(form) }}    
+    </div>
+</div>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('room') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

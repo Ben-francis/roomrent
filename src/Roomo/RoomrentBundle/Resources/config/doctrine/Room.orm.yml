@@ -1,0 +1,29 @@
+Roomo\RoomrentBundle\Entity\Room:
+    type: entity
+    table: null
+    repositoryClass: Roomo\RoomrentBundle\Entity\RoomRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        glat:
+            type: float
+        glong:
+            type: float
+        description:
+            type: text
+        address:
+            type: string
+            length: 255
+        price:
+            type: float
+        availableFrom:
+            type: datetime
+            column: available_from
+    lifecycleCallbacks: {  }

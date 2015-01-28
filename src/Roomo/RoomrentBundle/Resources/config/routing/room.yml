@@ -1,0 +1,34 @@
+room:
+    path:     /
+    defaults: { _controller: "RoomrentBundle:Room:index" }
+
+room_show:
+    path:     /{id}/show
+    defaults: { _controller: "RoomrentBundle:Room:show" }
+
+room_new:
+    path:     /new
+    defaults: { _controller: "RoomrentBundle:Room:new" }
+
+room_contact:
+    path: /contact
+    defaults: {controller : "RoomrentBundle:Room:contact" }
+    
+room_create:
+    path:     /create
+    defaults: { _controller: "RoomrentBundle:Room:create" }
+    requirements: { _method: post }
+
+room_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "RoomrentBundle:Room:edit" }
+
+room_update:
+    path:     /{id}/update
+    defaults: { _controller: "RoomrentBundle:Room:update" }
+    requirements: { _method: post|put }
+
+room_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "RoomrentBundle:Room:delete" }
+    requirements: { _method: post|delete }

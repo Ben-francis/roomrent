@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    
+     <!-- Page Content -->
+    
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Roomrent - connecting flatmates</h1>
+            <p>Need to find a flatmate? Add your room for rent and connect with people looking for a place.</p>
+            <p><a class="btn btn-primary btn-large" href="{{ path('room_new') }}">Add your room!</a>
+            </p>
+        </header>
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Features</h3>
+            </div>
+        </div>
+        
+        {% for entity in entities %}
+        <div class="row text-center">
+
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/800x500" alt="">
+                    <div class="caption">
+                        <h3>{{ entity.title }}</h3>
+                        <p>Price per month: £{{ entity.price }}</p>
+                        <p>{% if entity.availableFrom %}Available from:{{ entity.availableFrom|date('D d M') }}{% endif %}</p>
+                        <p>
+                            <a href="{{ path('room_show', { 'id': entity.id }) }}" class="btn btn-primary">View</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class ="row"></div>
+    {% endblock %}

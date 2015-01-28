@@ -1,0 +1,7 @@
+roomrent_room:
+    resource: "@RoomrentBundle/Resources/config/routing/room.yml"
+    prefix:   /room
+
+roomrent_homepage:
+    resource: "@RoomrentBundle/Resources/config/routing/room.yml"
+    prefix:   /

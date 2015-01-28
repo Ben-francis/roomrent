@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% block body -%}
+    <p>
+        <br />
+        <br />
+        <br />
+            
+    </p>
+    <div class="panel panel-default">
+  <div class="panel-heading">Edit your room offer</div>
+  <div class="panel-body">
+  
+
+    {{ form(edit_form) }}
+  </div>
+    </div>
+  <hr />
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('room') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
