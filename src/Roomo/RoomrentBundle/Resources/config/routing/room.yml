@@ -12,7 +12,7 @@ room_new:
 
 room_contact:
     path: /contact
-    defaults: {controller : "RoomrentBundle:Room:contact" }
+    defaults: {_controller : "RoomrentBundle:Room:contact" }
     
 room_create:
     path:     /create

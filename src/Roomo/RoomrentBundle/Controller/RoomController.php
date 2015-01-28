@@ -73,18 +73,23 @@ class RoomController extends Controller
         return $form;
     }
     
-    public function contactAction($id,Request $request)
+    public function contactAction(Request $request)
     {
+        
+        $id=$request->get('id');
+        
         $form = $this->createForm(new ContactType());
+        
         $form ->add('id','hidden',array('data'=>$id));
          $form->add('submit', 'submit', array('label' => 'Send'));
        
 
         if ($request->isMethod('POST')) {
-           
+          
             $form->bind($request);
 
             if ($form->isValid()) {
+            //todo, get email from user who is owner of room and send email to them.
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom($form->get('email')->getData())
@@ -94,11 +99,11 @@ class RoomController extends Controller
                         
                     );
 
-                //$this->get('mailer')->send($message);
-
+                $this->get('mailer')->send($message);
+                $id=$form->get('id')->getData();
                 $request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
-
-               return $this->redirect($this->generateUrl('show', array('id' => $id)));
+               
+               return $this->redirect($this->generateUrl('room_show', array('id' => $id)));
             }
         }
 
@@ -137,13 +142,13 @@ class RoomController extends Controller
             throw $this->createNotFoundException('Unable to find Room entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        
         
         
 
         return $this->render('RoomrentBundle:Room:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            
             
         ));
     }

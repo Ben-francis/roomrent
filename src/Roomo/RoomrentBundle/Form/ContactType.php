@@ -20,6 +20,7 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                ->setAction('../contact')
             ->add('name', 'text', array(
                 'attr' => array(
                     'placeholder' => 'Name',
@@ -69,7 +70,8 @@ class ContactType extends AbstractType
             'message' => array(
                 new NotBlank(array('message' => 'Message should not be blank.')),
                 new Length(array('min' => 5))
-            )
+            ),
+            'id' => array(new NotBlank(array('message' => 'no room id'))),
         ));
 
         $resolver->setDefaults(array(
