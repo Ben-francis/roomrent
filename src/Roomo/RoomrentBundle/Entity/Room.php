@@ -43,6 +43,7 @@ class Room
      * @var float
      */
     private $price;
+    
 
     /**
      * @var \DateTime

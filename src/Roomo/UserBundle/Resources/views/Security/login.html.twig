@@ -1,23 +1,35 @@
 {% extends '::base.html.twig' %}
 
+
 {% block body %}
-<section class="login">
-    <article>
+ <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Login or register</h1>
+            <p>You must login or register to be able to post a listing</p>
+             </p>
+        </header>
+<div class="row text-center">
+            <div class="col-md-6  hero-feature">
+                <h2>Login</h2>
+                 {% if error %}
+                     <div class="error">{{ error.message }}</div>
+                 {% endif %}
 
-        {% if error %}
-            <div class="error">{{ error.message }}</div>
-        {% endif %}
+                 <form action="{{ path('login_check') }}" method="post">
+                     <label for="username">Username:</label>
+                     <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
 
-        <form action="{{ path('login_check') }}" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                     <label for="password">Password:</label>
+                     <input type="password" class="form-control" id="password" name="_password" />
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="_password" />
-
-            <button type="submit">login</button>
-        </form>
-
-    </article>
-</section>
+                     <button type="submit" class="btn btn-primary pull-right">login</button>
+                 </form>
+            </div>
+            <div class="col-md-6 hero-feature">
+                <h2>Register</h2>
+                 {{ render(controller('UserBundle:Register:register')) }}
+               
+            </div>
+    
+</div>
 {% endblock %}

@@ -1,0 +1,14 @@
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+
+{% block body %}
+
+
+            <form action="{{ path('register') }}" method="POST">
+                {{ form_widget(form) }}
+
+                <input type="submit" class="btn btn-primary pull-right" value="Register!" />
+            </form>
+        
+{% endblock %}
