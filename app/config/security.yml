@@ -1,12 +1,31 @@
 security:
+    encoders:
+        Roomo\UserBundle\Entity\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     providers:
-        in_memory:
-            memory: ~
+        our_database_users:
+            entity: { class: UserBundle:User, property: username }
+
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
-
-        default:
+       
+        secured_area:
+            pattern:    ^/
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout:
+                path:   logout
+                target: room
             anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        
+        - { path: ^/new, roles: ROLE_USER }
+        - { path: ^/create, roles: ROLE_USER }
