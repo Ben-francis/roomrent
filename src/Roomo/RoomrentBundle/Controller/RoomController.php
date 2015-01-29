@@ -87,16 +87,20 @@ class RoomController extends Controller
        
 
         if ($request->isMethod('POST')) {
-          
-            $form->bind($request);
+           $form->bind($request);
 
             if ($form->isValid()) {
+                 $em = $this->getDoctrine()->getManager();
+                $room = $em->getRepository('RoomrentBundle:Room')->find($form->get('id')->getData());
+                $email = $room->getUser()->getEmail();
+                
             //todo, get email from user who is owner of room and send email to them.
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom($form->get('email')->getData())
-                    ->setTo('ben_francis@hotmail.com')
+                    ->setTo($email)
                     ->setBody(
+                        'Room: '.$room->getTitle().'<br /> '.
                         'message: '.$form->get('message')->getData()
                         
                     );
