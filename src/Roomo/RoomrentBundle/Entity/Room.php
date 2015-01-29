@@ -3,6 +3,7 @@
 namespace Roomo\RoomrentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Roomo\UserBundle\Entity\User;
 
 /**
  * Room
@@ -50,7 +51,7 @@ class Room
      */
     private $availableFrom;
 
-
+    protected $user;
     /**
      * Get id
      *
@@ -220,5 +221,13 @@ class Room
     public function getAvailableFrom()
     {
         return $this->availableFrom;
+    }
+    
+    public function getUser(){
+        return $this->user();
+    }
+    
+    public function setUser(User $user){
+        $this->user = $user;
     }
 }

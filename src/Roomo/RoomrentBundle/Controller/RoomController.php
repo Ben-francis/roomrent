@@ -4,7 +4,7 @@ namespace Roomo\RoomrentBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Roomo\UserBundle\Entity\User;
 use Roomo\RoomrentBundle\Entity\Room;
 use Roomo\RoomrentBundle\Form\RoomType;
 use Roomo\RoomrentBundle\Form\ContactType;
@@ -41,6 +41,8 @@ class RoomController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $user = $this->getUser();
+            $entity->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

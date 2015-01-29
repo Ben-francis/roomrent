@@ -26,4 +26,9 @@ Roomo\RoomrentBundle\Entity\Room:
         availableFrom:
             type: datetime
             column: available_from
+    
+    manyToOne:
+        user:
+            targetEntity: Roomo\UserBundle\Entity\User
+            
     lifecycleCallbacks: {  }
